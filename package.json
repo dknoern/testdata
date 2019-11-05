@@ -23,7 +23,7 @@
   },
   "homepage": "https://github.com/dknoern/testdata#readme",
   "dependencies": {
-    "axios": "^0.16.2",
+    "axios": "^0.18.1",
     "faker": "^4.1.0",
     "mongoose": "^5.7.7",
     "querystring": "^0.2.0"
