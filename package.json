@@ -1,0 +1,31 @@
+{
+  "name": "testdata",
+  "version": "1.0.0",
+  "description": "Test data service - creates and manages test data sets for Salesforce applications",
+  "main": "testdata.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dknoern/testdata.git"
+  },
+  "keywords": [
+    "test",
+    "testdata",
+    "Salesforce",
+    "node"
+  ],
+  "author": "David Knoernschild",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dknoern/testdata/issues"
+  },
+  "homepage": "https://github.com/dknoern/testdata#readme",
+  "dependencies": {
+    "axios": "^0.16.2",
+    "faker": "^4.1.0",
+    "mongoose": "^5.7.7",
+    "querystring": "^0.2.0"
+  }
+}
