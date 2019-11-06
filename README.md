@@ -1,7 +1,17 @@
 # testdata
-Test data service - creates and manages test data sets for Salesforce applications
+Test data service - creates and manages test data sets for Salesforce applications.
+Datasets consisting of a list of contacts can be randomly generated and saved to MongoDB.  The datasets can
+be pushed to any configured Salesforce environment.
 
-# Installation
+## Installation
+
+start mongodb
+
+```
+ docker run -d -p 27017:27017 mongo
+ ```
+
+ install application
 
 ```
 npm install
@@ -47,8 +57,13 @@ For example:
 
 Import the environment, specifying name:
 
-`node testctl.js  create environment -f ./environment.json`
+`node testctl.js  create environment <NAME> -f ./environment.json`
 
+You should see output similar to:
+
+```
+Environment env1 created.
+```
 
 ## Get list of environments
 
@@ -73,7 +88,7 @@ A new dataset can be created and saved to the database as follows:
 Output will be something like:
 
 ```
-Saved 10 contacts to database.
+Saved 10 contacts for dataset test2 to database.
 ```
 
 ## Push dataset to environment
@@ -85,7 +100,7 @@ Once saved, the dataset can be pushed to a salesforce.
 The output will be:
 
 ```
-Pushed 10 contacts from datbase to salesforce.
+Pushed 10 contacts from dataset test2 from datbase to salesforce env1.
 ```
 
 ## Purge data from an environment

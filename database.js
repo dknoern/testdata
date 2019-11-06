@@ -11,6 +11,9 @@ var environmentSchema = new mongoose.Schema({
     password: String
 });
 
+var mongoUri = 'mongodb://localhost/testdata';
+var mongoOpts = { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true };
+
 environmentSchema.index({ name: 1 }, { unique: true });
 
 var Environment = mongoose.model('Environment', environmentSchema);
@@ -26,7 +29,7 @@ var contactSchema = new mongoose.Schema({
 var Contact = mongoose.model('Contact', contactSchema);
 
 exports.getEnvironments = async function () {
-    mongoose.connect('mongodb://localhost/testdata', { useNewUrlParser: true });
+    mongoose.connect(mongoUri, mongoOpts);
 
     Environment.find({}, function (err, docs) {
 
@@ -46,28 +49,57 @@ exports.getEnvironments = async function () {
     });
 }
 
-exports.createEnvironment = function (data) {
-    mongoose.connect('mongodb://localhost/testdata', { useNewUrlParser: true });
+exports.getDatasets = async function () {
+    mongoose.connect(mongoUri, mongoOpts);
 
-    var environment = new Environment(data);
 
-    environment.save(function (err, environment) {
+    Contact.find().distinct('dataset', function (err, names) {
+
+        if (names.length == 0) {
+            console.log("No datasets found.");
+        } else {
+
+            console.log("NAME");
+
+            names.map(name => {
+                console.log(name);
+            });
+        }
+
         mongoose.connection.close();
         if (err) return console.error(err);
     });
 }
 
+exports.createEnvironment = function (data) {
+    mongoose.connect(mongoUri, mongoOpts);
+    var environment = new Environment(data);
+
+    environment.save(function (err, doc) {
+        mongoose.connection.close();
+        if (err) {
+            if (err.code == 11000) {
+                console.log("Error: environment named \"" + environment.name + "\" already exists.");
+            } else {
+                console.log(err.errmsg);
+            }
+            return;
+        }else {
+            console.log("Environment named \"" + environment.name + "\" created.");
+        }
+    });
+}
 
 exports.saveContacts = function (dataset, array) {
 
-    mongoose.connect('mongodb://localhost/testdata', { useNewUrlParser: true });
+    mongoose.connect(mongoUri, mongoOpts);
 
     // add dataset name
     array.map(c => { c.dataset = dataset });
 
     Contact.create(array, function (err, array) {
         mongoose.connection.close();
-        console.log("Saved " + array.length + " contacts to database.")
+        console.log("Saved " + array.length + " contacts for dataset " + dataset + " to database.")
         if (err) // ...
             console.log('error: ' + err);
         // ...
@@ -76,13 +108,13 @@ exports.saveContacts = function (dataset, array) {
 
 
 exports.push = async function (datasetName, envName) {
-    mongoose.connect('mongodb://localhost/testdata', { useNewUrlParser: true });
+    mongoose.connect(mongoUri, mongoOpts);
 
 
     Environment.findOne({ "name": envName }, function (error, env) {
 
         if (env == null) {
-            console.log("environment " + envName + " not found");
+            console.log("Environment " + envName + " not found.");
             mongoose.connection.close();
             process.exit(1);
         } else {
@@ -91,8 +123,6 @@ exports.push = async function (datasetName, envName) {
                 if (docs.length == 0) {
                     console.log("No contacts found.");
                 } else {
-
-                    //salesforce.purgeContacts();
                     docs.map(doc => salesforce.createContact(env, doc));
                 }
 
@@ -108,7 +138,7 @@ exports.push = async function (datasetName, envName) {
 };
 
 exports.purge = function (envName) {
-    mongoose.connect('mongodb://localhost/testdata', { useNewUrlParser: true });
+    mongoose.connect(mongoUri, mongoOpts);
 
     Environment.findOne({ "name": envName }, function (error, env) {
 

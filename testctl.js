@@ -15,24 +15,17 @@ function processArgs() {
         case 'create':
             switch (type) {
                 case 'dataset':
-                    console.log('creating dataset named ' + name);
-                    var docs = dataset.create(10,name);
-
-                    console.log("from main, docs are "+ docs);
+                    var docs = dataset.create(10, name);
                     database.saveContacts(name, docs);
-
 
                     break;
                 case 'environment':
-                    if(myArgs[3]!="-f" || myArgs[4]==null){
+                    if (myArgs[3] != "-f" || myArgs[4] == null) {
                         console.log("Error: syntax should be 'create environment <NAME> -f <FILE.JSON>");
                         process.exit(1);
                     }
                     var credentials = require(myArgs[4]);
-
-                    console.log("instance: " + credentials.instance);
                     credentials.name = name;
-                    
                     database.createEnvironment(credentials);
                     break;
 
@@ -46,7 +39,7 @@ function processArgs() {
 
             switch (type) {
                 case 'dataset':
-                    console.log('getting dataset named ' + name);
+                        database.getDatasets();
                     break;
                 case 'environment':
 
@@ -60,11 +53,11 @@ function processArgs() {
 
         case 'push':
             var destination = myArgs[3];
-            if(destination == null){
+            if (destination == null) {
                 console.log("Error: syntax should be 'push dataset <NAME> <ENVIRONMENT>");
                 process.exit(1);
             }
-            database.push(name,destination);
+            database.push(name, destination);
             break;
 
         case 'delete':
@@ -84,7 +77,7 @@ function processArgs() {
         case 'purge':
             switch (type) {
                 case 'environment':
-                    console.log('purging environment named ' + name);
+                    console.log('Purging environment ' + name + '.');
                     database.purge(name);
                     break;
                 default:
@@ -92,7 +85,7 @@ function processArgs() {
                     process.exit(1);
             }
             break;
-        
+
         default:
             console.log('Error: unknown command \"' + command + '\"');
     }

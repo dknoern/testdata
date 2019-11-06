@@ -8,12 +8,9 @@ const formHeaders = {
 }
 
 exports.createContact = function (environment, contactData) {
-    console.log("creating contact in salesforce for " + contactData.firstName + " " + contactData.lastName);
 
-    axios.post(environment.instance +'/services/oauth2/token', loginFormData(environment), formHeaders)
+    axios.post(environment.instance + '/services/oauth2/token', loginFormData(environment), formHeaders)
         .then(response => {
-            console.log('instance_url: ' + response.data.instance_url);
-            console.log('access_token: ' + response.data.access_token);
 
             const authHeader =
             {
@@ -34,7 +31,7 @@ exports.createContact = function (environment, contactData) {
 
             axios.post(createContactUrl, postBody, authHeader)
                 .then(response => {
-                    console.log('response: ' + JSON.stringify(response.data));
+                    console.log('Pushed contact ' + contactData.firstName + " " + contactData.lastName + ' to ' + environment.name);
                 });
         })
         .catch(error => {
@@ -45,7 +42,7 @@ exports.createContact = function (environment, contactData) {
 
 exports.purge = function (environment) {
 
-    axios.post(environment.instance +'/services/oauth2/token', loginFormData(environment), loginFormData)
+    axios.post(environment.instance + '/services/oauth2/token', loginFormData(environment), loginFormData)
         .then(response => {
             var access_token = response.data.access_token;
             axios.get(environment.instance + '/services/data/v20.0/query?q=SELECT+name+from+Contact', {
@@ -67,14 +64,14 @@ exports.purge = function (environment) {
                 }
                 );
             });
-        }).then(console.log("environment test1 purged"))
+        }).then(console.log("Environment " + environment.name + " purged."))
         .catch(error => {
             console.log(error);
         });
 }
 
 
-function loginFormData(environment){
+function loginFormData(environment) {
     return qs.stringify({
         grant_type: 'password',
         client_id: environment.client_id,
