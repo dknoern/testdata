@@ -51,6 +51,25 @@ function processArgs() {
             }
             break;
 
+
+        case 'describe':
+
+            switch (type) {
+                case 'dataset':
+                        database.describeDataset(name);
+                    break;
+                case 'environment':
+    
+                    //database.getEnvironments();
+                    break;
+                default:
+                    console.log('Error: you must specify the type of resource to get, either \"dataset\" or \"environment\".');
+                    process.exit(1);
+            }
+            break;
+    
+
+
         case 'push':
             var destination = myArgs[3];
             if (destination == null) {

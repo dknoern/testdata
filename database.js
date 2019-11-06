@@ -137,6 +137,36 @@ exports.push = async function (datasetName, envName) {
     });
 };
 
+exports.describeDataset = async function (datasetName) {
+    mongoose.connect(mongoUri, mongoOpts);
+
+            Contact.find({dataset:datasetName}, function (err, docs) {
+
+                if (docs.length == 0) {
+                    console.log("No dataset named " + datasetName + " found.");
+                } else {
+                    console.log("NAME                 PHONE                  EMAIL");
+                    docs.map(doc => {
+                        var fullName = doc.firstName + " " + doc.lastName;
+                        console.log(fullName.padEnd(20) + " " + doc.phone.padEnd(22) + " " + doc.email);
+
+                    });
+                }
+
+                mongoose.connection.close();
+                if (err) {
+                    console.log("error " + err);
+                    return console.error(err);
+                }
+            });
+        
+
+
+};
+
+
+
+
 exports.purge = function (envName) {
     mongoose.connect(mongoUri, mongoOpts);
 

@@ -91,6 +91,45 @@ Output will be something like:
 Saved 10 contacts for dataset test2 to database.
 ```
 
+## Get a list of saved datasets
+
+To list saved datasets:
+
+`node testctl.js get dataset`
+
+The saved datasets will be displayed
+
+```
+NAME
+set2
+set3
+```
+
+## Output a dataset
+
+To see a dataset printed to console, type:
+
+`node testctl.js describe dataset set2`
+
+You should see the data:
+
+```
+NAME                 PHONE                  EMAIL
+Dedrick Yundt        (329) 479-4990 x093    Mazie_Treutel5@hotmail.com
+Corine Rogahn        451.852.3925 x866      Ashtyn_Waters62@yahoo.com
+Gina Monahan         (580) 408-7464 x91367  Damon.OConnell@hotmail.com
+Roma Rice            132-151-5192 x132      Dahlia.Kertzmann@yahoo.com
+Savion Hessel        (863) 354-4453         Macie23@gmail.com
+Clyde Mills          1-600-426-4880         Selena.Gislason@hotmail.com
+Arianna McClure      014.830.7934 x0987     Isidro_Purdy8@yahoo.com
+Adelle McDermott     1-226-534-8154         Lyda_Wyman@gmail.com
+Lindsey Jakubowski   950-640-2457           Jerel57@hotmail.com
+Elisha D'Amore       1-140-961-5579 x9874   Jerry90@yahoo.com
+```
+
+
+
+
 ## Push dataset to environment
 
 Once saved, the dataset can be pushed to a salesforce.  
@@ -114,3 +153,5 @@ You should see output like:
 ```
 Environment test1 purged.
 ```
+
+
