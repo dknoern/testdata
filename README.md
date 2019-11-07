@@ -28,7 +28,7 @@ node testctl.js  [command] [TYPE] [NAME] [flags]
 where `command`, `TYPE`, `NAME`, and `flags` are:
 
 * `command`: Specifies the operation that you want to perform on one or more resources, 
-for example `create`, `get`, `delete`, `push`.
+for example `create`, `get`, `describe`, `push`. `delete`
 
 * `TYPE`:   Specifies the resource type. For example: `dataset`, `environment`
 
@@ -77,6 +77,23 @@ The output will be something like:
 NAME       INSTANCE                      CLIENT_ID          USENAME
 dktest     https://na174.salesforce.com  3MVG9LBJLApeX...   david@seattleweb.com
 bro        https://na174.salesforce.com  3MVG9LBJLApeX...   foo@seattleweb.com
+```
+
+## Describe and environment
+
+To see details of a saved environment, type:
+
+`node testctl.js describe environment <NAME>`
+
+You will see output as follows:
+
+```
+ENVIRONMENT   : env1
+INSTANCE      : https://na174.salesforce.com
+CLIENT_ID     : 3MVG9LBKLApeX_PD3xIQFoGip_wU3QqhLi3wyUwaZbmeD6UjvMnQUg1roWmUYZAF2Kq3jIO36IhxJSCmm5ydg
+CLIENT_SECRET : D5196E3760C2675FEBDE7DA2684A046F19FAD318854ECF940B33007524C0EFC2
+USERNAME      : user@slalom.com
+PASSWORD      : zzzWxZ2Q28TZZJzetbMKnHkdCiXVu0WObagX0HDX6MRw6WkR3
 ```
 
 ## Create a new dataset
@@ -154,4 +171,27 @@ You should see output like:
 Environment test1 purged.
 ```
 
+## Delete a dataset
 
+The command to delete a dataset is:
+
+`node testctl.js delete dataset <NAME>`
+
+It will be confirmed by output:
+
+```
+Dataset set1 deleted.
+```
+
+
+## Delete an environment
+
+The command to delete an environment is:
+
+`node testctl.js delete environment <NAME>`
+
+It will be confirmed by output:
+
+```
+Environment env1 deleted.
+```

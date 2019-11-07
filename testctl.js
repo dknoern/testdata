@@ -1,6 +1,4 @@
-var dataset = require('./dataset.js');
 var database = require('./database.js');
-var salesforce = require('./salesforce.js');
 
 processArgs();
 
@@ -15,8 +13,8 @@ function processArgs() {
         case 'create':
             switch (type) {
                 case 'dataset':
-                    var docs = dataset.create(10, name);
-                    database.saveContacts(name, docs);
+                    
+                    database.createDataset(name);
 
                     break;
                 case 'environment':
@@ -28,7 +26,6 @@ function processArgs() {
                     credentials.name = name;
                     database.createEnvironment(credentials);
                     break;
-
 
                 default:
                     console.log('Error: you must specify the type of resource to create, either \"dataset\" or \"environment\".');
@@ -51,7 +48,6 @@ function processArgs() {
             }
             break;
 
-
         case 'describe':
 
             switch (type) {
@@ -60,7 +56,7 @@ function processArgs() {
                     break;
                 case 'environment':
     
-                    //database.getEnvironments();
+                    database.describeEnvironment(name);
                     break;
                 default:
                     console.log('Error: you must specify the type of resource to get, either \"dataset\" or \"environment\".');
@@ -68,24 +64,28 @@ function processArgs() {
             }
             break;
     
-
-
         case 'push':
             var destination = myArgs[3];
             if (destination == null) {
-                console.log("Error: syntax should be 'push dataset <NAME> <ENVIRONMENT>");
+                console.log("Error: syntax should be \"push dataset <NAME> <ENVIRONMENT>\"");
                 process.exit(1);
             }
             database.push(name, destination);
             break;
 
         case 'delete':
+
+            if(name==null){
+                console.log('Error: syntax should be \"delete <TYPE> <NAME> <ENVIRONMENT>\"');
+                process.exit(1);
+            }
+
             switch (type) {
                 case 'dataset':
-                    console.log('deleting dataset named ' + name);
+                    database.deleteDataset(name);
                     break;
                 case 'environment':
-                    console.log('deleting environment named ' + name);
+                    database.deleteEnvironment(name);
                     break;
                 default:
                     console.log('Error: you must specify the type of resource to delete, either \"dataset\" or \"environment\".');
@@ -100,7 +100,7 @@ function processArgs() {
                     database.purge(name);
                     break;
                 default:
-                    console.log('Error: you must specify the type of resource to delete, only \"environment\".');
+                    console.log('Error: you must specify the type of resource to purge, only \"environment\".');
                     process.exit(1);
             }
             break;
