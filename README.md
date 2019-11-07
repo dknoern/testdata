@@ -109,7 +109,8 @@ PASSWORD      : zzzWxZ2Q28TZZJzetbMKnHkdCiXVu0WObagX0HDX6MRw6WkR3
 
 A new dataset can be created and saved to the database as follows:
 
-```node testctl.js create dataset <NAME>
+```
+node testctl.js create dataset <NAME>
 ```
 
 Output will be something like:
