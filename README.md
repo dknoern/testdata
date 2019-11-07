@@ -44,7 +44,7 @@ test data records to create.
 
 ## Create an environment
 
-Copy the file `evironment.json.sample` to `environment.json` and fill in credentials for your salesforce environment.
+Copy the file `evironment.json.sample` to `environment.json` and fill in credentials for your Salesforce environment.
 
 For example:
 
@@ -86,7 +86,7 @@ dktest     https://na174.salesforce.com  3MVG9LBJLApeX...   david@seattleweb.com
 bro        https://na174.salesforce.com  3MVG9LBJLApeX...   foo@seattleweb.com
 ```
 
-## Describe and environment
+## Describe an environment
 
 To see details of a saved environment, type:
 
@@ -107,7 +107,7 @@ PASSWORD      : zzzWxZ2Q28TZZJzetbMKnHkdCiXVu0WObagX0HDX6MRw6WkR3
 
 ## Create a new dataset
 
-A new dataset can be created and saved to the database as follows:
+A new dataset can be created and saved to the database:
 
 ```
 node testctl.js create dataset <NAME>
@@ -161,7 +161,7 @@ Elisha D'Amore       1-140-961-5579 x9874   Jerry90@yahoo.com
 
 ## Push dataset to Salesforce environment
 
-Once saved, the dataset can be pushed to a salesforce environment.  
+Once saved, the dataset can be pushed to a Salesforce environment.  
 
 ```
 node testctl.js push dataset <DATASET> <ENVIRONMENT>
@@ -170,7 +170,7 @@ node testctl.js push dataset <DATASET> <ENVIRONMENT>
 The output will be:
 
 ```
-Pushed 10 contacts from dataset test2 from datbase to salesforce env1.
+Pushed 10 contacts from dataset test2 from datbase to Salesforce env1.
 ```
 
 ## Purge data from an environment
