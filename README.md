@@ -159,9 +159,9 @@ Lindsey Jakubowski   950-640-2457           Jerel57@hotmail.com
 Elisha D'Amore       1-140-961-5579 x9874   Jerry90@yahoo.com
 ```
 
-## Push dataset to environment
+## Push dataset to Salesforce environment
 
-Once saved, the dataset can be pushed to a salesforce.  
+Once saved, the dataset can be pushed to a salesforce environment.  
 
 ```
 node testctl.js push dataset <DATASET> <ENVIRONMENT>
