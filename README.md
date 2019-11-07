@@ -11,10 +11,10 @@ be pushed to any configured Salesforce environment.
 start mongodb
 
 ```
- docker run -d -p 27017:27017 mongo
- ```
+docker run -d -p 27017:27017 mongo
+```
 
- install application
+install application
 
 ```
 npm install
@@ -158,9 +158,6 @@ Adelle McDermott     1-226-534-8154         Lyda_Wyman@gmail.com
 Lindsey Jakubowski   950-640-2457           Jerel57@hotmail.com
 Elisha D'Amore       1-140-961-5579 x9874   Jerry90@yahoo.com
 ```
-
-
-
 
 ## Push dataset to environment
 
