@@ -60,7 +60,9 @@ For example:
 
 Import the environment, specifying name:
 
-`node testctl.js  create environment <NAME> -f ./environment.json`
+```
+node testctl.js  create environment <NAME> -f ./environment.json
+```
 
 You should see output similar to:
 
@@ -72,7 +74,9 @@ Environment env1 created.
 
 To list all configured environments, type:
 
-`node testctl.js  get environment`
+```
+node testctl.js  get environment
+```
 
 The output will be something like:
 
@@ -86,7 +90,9 @@ bro        https://na174.salesforce.com  3MVG9LBJLApeX...   foo@seattleweb.com
 
 To see details of a saved environment, type:
 
-`node testctl.js describe environment <NAME>`
+```
+node testctl.js describe environment <NAME>
+```
 
 You will see output as follows:
 
@@ -103,7 +109,8 @@ PASSWORD      : zzzWxZ2Q28TZZJzetbMKnHkdCiXVu0WObagX0HDX6MRw6WkR3
 
 A new dataset can be created and saved to the database as follows:
 
-`node testctl.js create dataset <NAME>`
+```node testctl.js create dataset <NAME>
+```
 
 Output will be something like:
 
@@ -115,7 +122,9 @@ Saved 10 contacts for dataset test2 to database.
 
 To list saved datasets:
 
-`node testctl.js get dataset`
+```
+node testctl.js get dataset
+```
 
 The saved datasets will be displayed
 
@@ -129,7 +138,9 @@ set3
 
 To see a dataset printed to console, type:
 
-`node testctl.js describe dataset set2`
+```
+node testctl.js describe dataset set2
+```
 
 You should see the data:
 
@@ -154,7 +165,9 @@ Elisha D'Amore       1-140-961-5579 x9874   Jerry90@yahoo.com
 
 Once saved, the dataset can be pushed to a salesforce.  
 
-`node testctl.js push dataset <DATASET> <ENVIRONMENT>`
+```
+node testctl.js push dataset <DATASET> <ENVIRONMENT>
+```
 
 The output will be:
 
@@ -166,7 +179,9 @@ Pushed 10 contacts from dataset test2 from datbase to salesforce env1.
 
 To purge data from an environment, type:
 
-`node testctl.js purge environment <ENVIRONMENT>`
+```
+node testctl.js purge environment <ENVIRONMENT>
+```
 
 You should see output like:
 
@@ -178,7 +193,9 @@ Environment test1 purged.
 
 The command to delete a dataset is:
 
-`node testctl.js delete dataset <NAME>`
+```
+node testctl.js delete dataset <NAME>
+```
 
 It will be confirmed by output:
 
@@ -186,12 +203,13 @@ It will be confirmed by output:
 Dataset set1 deleted.
 ```
 
-
 ## Delete an environment
 
 The command to delete an environment is:
 
-`node testctl.js delete environment <NAME>`
+```
+node testctl.js delete environment <NAME>
+```
 
 It will be confirmed by output:
 
