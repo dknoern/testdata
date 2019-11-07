@@ -3,6 +3,9 @@ Test data service - creates and manages test data sets for Salesforce applicatio
 Datasets consisting of a list of contacts can be randomly generated and saved to MongoDB.  The datasets can
 be pushed to any configured Salesforce environment.
 
+![](testctl.png)
+
+
 ## Installation
 
 start mongodb
